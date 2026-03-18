@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>솔레아스풋볼 지점 안내</title>
-    <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=xw0tk9m5e9"></script>
+    <title>솔레아스풋볼 지점 안내 (아임웹용)</title>
+    <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=bcrksy4dxj"></script>
     <style>
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
         #map { width: 100%; height: 100vh; }
@@ -18,7 +18,7 @@ var map = new naver.maps.Map('map', {
     zoom: 7
 });
 
-// ✅ 준형님이 주신 정밀 좌표 + 풀 주소 데이터셋 (26개 지점 순서 준수)
+// ✅ 준형님이 주신 정밀 좌표 + 풀 주소 데이터셋
 var branches = [
     { name:"솔레아스풋볼 부천상동점", lat:37.4969933630867, lng:126.744004195688, addr:"경기도 부천시 원미구 부흥로 14, 3층", tel:"032-323-9195" },
     { name:"솔레아스풋볼 시흥목감점", lat:37.3866580378464, lng:126.862637145326, addr:"경기도 시흥시 수인로 2323, 뉴홍익빌딩 4층", tel:"031-504-6172" },
@@ -51,7 +51,6 @@ var branches = [
 branches.forEach(function(branch){
     var point = new naver.maps.LatLng(branch.lat, branch.lng);
 
-    // 1. 금색 물방울 마커
     var marker = new naver.maps.Marker({
         position: point,
         map: map,
@@ -68,7 +67,6 @@ branches.forEach(function(branch){
         }
     });
 
-    // 2. 지점명 라벨 (이름박스)
     var label = new naver.maps.Marker({
         position: point,
         map: map,
@@ -78,7 +76,6 @@ branches.forEach(function(branch){
         }
     });
 
-    // 3. 정보창 (팝업창)
     var infoWindow = new naver.maps.InfoWindow({
         content: `
         <div style="padding:15px;min-width:200px;line-height:1.6;font-family:'Malgun Gothic', sans-serif;">
@@ -91,7 +88,6 @@ branches.forEach(function(branch){
         disableAnchor: true
     });
 
-    // 클릭 이벤트 함수: 마커나 라벨 클릭 시 팝업창 토글
     function toggleInfoWindow() {
         if (infoWindow.getMap()) {
             infoWindow.close();
